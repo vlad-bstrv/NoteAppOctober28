@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_corner_radius">3dp</dimen>
+    <dimen name="card_elevation">5dp</dimen>
+    <dimen name="item_note_title">24sp</dimen>
+    <dimen name="item_note_text">14sp</dimen>
+    <dimen name="app_margin">8dp</dimen>
+    <dimen name="margin_floating_action_button">16dp</dimen>
+</resources>
