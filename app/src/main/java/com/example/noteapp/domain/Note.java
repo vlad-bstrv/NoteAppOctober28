@@ -5,13 +5,13 @@ import android.os.Parcelable;
 
 public class Note implements Parcelable {
 
-        private String title;
-        private String text;
+    private String title;
+    private String text;
 
-        public Note(String name, String text) {
-            this.title = name;
-            this.text = text;
-        }
+    public Note(String name, String text) {
+        this.title = name;
+        this.text = text;
+    }
 
     protected Note(Parcel in) {
         title = in.readString();
@@ -31,20 +31,20 @@ public class Note implements Parcelable {
     };
 
     public String getTitle() {
-            return title;
-        }
+        return title;
+    }
 
-        public void setTitle(String name) {
-            this.title = name;
-        }
+    public void setTitle(String name) {
+        this.title = name;
+    }
 
-        public String getText() {
-            return text;
-        }
+    public String getText() {
+        return text;
+    }
 
-        public void setText(String text) {
-            this.text = text;
-        }
+    public void setText(String text) {
+        this.text = text;
+    }
 
     @Override
     public int describeContents() {

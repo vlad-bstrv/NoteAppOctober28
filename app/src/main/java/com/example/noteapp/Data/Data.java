@@ -16,7 +16,7 @@ public class Data {
     }
 
     public static Data getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Data();
 
         }
