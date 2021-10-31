@@ -23,4 +23,6 @@
     <string name="details">Детали</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

@@ -1,9 +1,12 @@
 package com.example.noteapp;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -38,6 +41,7 @@ public class NoteDetailsFragment extends Fragment {
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Toolbar toolbar = view.findViewById(R.id.toolbar_details_fragment);
@@ -45,19 +49,16 @@ public class NoteDetailsFragment extends Fragment {
             Drawer drawer = (Drawer) getActivity();
             drawer.setToolbar(toolbar);
         }
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.menu_details_action_close:
-                        getParentFragmentManager().popBackStack();
-                        return true;
-                    case R.id.menu_details_action_delete:
-                        Toast.makeText(requireContext(), "Delete", Toast.LENGTH_SHORT).show();
-                        return true;
-                }
-                return false;
+        toolbar.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menu_details_action_close:
+                    getParentFragmentManager().popBackStack();
+                    return true;
+                case R.id.menu_details_action_delete:
+                    DeleteDialogFragment.newInstance().show(getParentFragmentManager(), DeleteDialogFragment.TAG);
+                    return true;
             }
+            return false;
         });
 
         title = view.findViewById(R.id.title_detail);
