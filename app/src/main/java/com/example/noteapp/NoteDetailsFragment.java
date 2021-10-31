@@ -4,12 +4,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.noteapp.Data.Data;
 import com.example.noteapp.domain.Note;
@@ -37,6 +40,26 @@ public class NoteDetailsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Toolbar toolbar = view.findViewById(R.id.toolbar_details_fragment);
+        if (getActivity() instanceof Drawer) {
+            Drawer drawer = (Drawer) getActivity();
+            drawer.setToolbar(toolbar);
+        }
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_details_action_close:
+                        getParentFragmentManager().popBackStack();
+                        return true;
+                    case R.id.menu_details_action_delete:
+                        Toast.makeText(requireContext(), "Delete", Toast.LENGTH_SHORT).show();
+                        return true;
+                }
+                return false;
+            }
+        });
+
         title = view.findViewById(R.id.title_detail);
         text = view.findViewById(R.id.text_detail);
 

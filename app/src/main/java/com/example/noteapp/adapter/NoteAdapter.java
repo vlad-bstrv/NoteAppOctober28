@@ -76,7 +76,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                     detailsNoteReplace.onDetailsNote(getAdapterPosition());
                 }
             });
-getAdapterPosition();
+            getAdapterPosition();
         }
     }
 
