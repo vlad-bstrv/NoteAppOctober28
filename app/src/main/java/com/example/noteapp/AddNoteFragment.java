@@ -46,10 +46,6 @@ public class AddNoteFragment extends Fragment {
     private void setActionBar(View view) {
         Toolbar toolbar = view.findViewById(R.id.toolbar_add_fragment);
 
-        if (getActivity() instanceof Drawer) {
-            Drawer drawer = (Drawer) getActivity();
-            drawer.setToolbar(toolbar);
-        }
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

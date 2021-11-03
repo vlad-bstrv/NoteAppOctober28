@@ -6,49 +6,41 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.noteapp.Data.Data;
+import android.widget.TextView;
+
 import com.example.noteapp.domain.Note;
 
 public class NoteDetailsFragment extends Fragment {
 
-    TextView title;
-    TextView text;
+    private TextView title;
+    private TextView text;
+    private Note note;
 
-
-    private static final String ARG_PARAM = "ARG_PARAM";
+    public static final String ARG_PARAM = "ARG_PARAM";
 
     public NoteDetailsFragment() {
         super(R.layout.fragment_note_details);
     }
 
-    public static NoteDetailsFragment newInstance(int position) {
+    public static NoteDetailsFragment newInstance(Note note) {
         NoteDetailsFragment fragment = new NoteDetailsFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_PARAM, position);
+        args.putParcelable(ARG_PARAM, note);
         fragment.setArguments(args);
         return fragment;
     }
-
 
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Toolbar toolbar = view.findViewById(R.id.toolbar_details_fragment);
-        if (getActivity() instanceof Drawer) {
-            Drawer drawer = (Drawer) getActivity();
-            drawer.setToolbar(toolbar);
-        }
+
         toolbar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_details_action_close:
@@ -65,9 +57,9 @@ public class NoteDetailsFragment extends Fragment {
         text = view.findViewById(R.id.text_detail);
 
         if (getArguments() != null) {
-            int position = getArguments().getInt(ARG_PARAM);
-            title.setText(Data.getInstance().getNote(position).getTitle());
-            text.setText(Data.getInstance().getNote(position).getText());
+            note = getArguments().getParcelable(ARG_PARAM);
+            title.setText(note.getTitle());
+            text.setText(note.getDescription());
 
         }
         super.onViewCreated(view, savedInstanceState);
