@@ -18,18 +18,15 @@ import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
 
-    private final List<Note> notes = new ArrayList<>();
-    private final Fragment fragment;
+    private final List<Note> notes;
+
     private OnNoteClicked noteClicked;
 
-    public NotesAdapter(Fragment fragment) {
-        this.fragment = fragment;
+    public NotesAdapter(List<Note> notes) {
+        this.notes = notes;
+
     }
 
-    public void setNotes(Collection<Note> notes) {
-        notes.clear();
-        notes.addAll(notes);
-    }
 
     @NonNull
     @Override
@@ -80,7 +77,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            fragment.registerForContextMenu(itemView);
 
             itemNoteTitle = itemView.findViewById(R.id.item_note_title);
             itemNoteText = itemView.findViewById(R.id.item_note_text);
@@ -93,7 +89,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
                     }
                 }
             });
-            getAdapterPosition();
         }
     }
 

@@ -21,15 +21,19 @@ import com.example.noteapp.R;
 import com.example.noteapp.domain.Note;
 import com.example.noteapp.domain.NotesRepositoryImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class NotesListFragment extends Fragment implements NotesView {
 
 
-    private RecyclerView notesList;
+//    private RecyclerView notesList;
     private NotesAdapter adapter;
     private NotesPresenter presenter;
+    ArrayList<Note> data = new ArrayList<>();
+
+
 
     public NotesListFragment() {
         super(R.layout.fragment_list);
@@ -40,14 +44,21 @@ public class NotesListFragment extends Fragment implements NotesView {
         super.onCreate(savedInstanceState);
 
         presenter = new NotesPresenter(this, new NotesRepositoryImpl());
-        adapter = new NotesAdapter(this);
 
-        adapter.setNoteClicked(new NotesAdapter.OnNoteClicked() {
-            @Override
-            public void onNoteClicked(Note note) {
-                openDetailsFragment(note);
-            }
-        });
+
+        data.add(new Note("id1", "title 1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 1"));
+        data.add(new Note("id2", "title 2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 1"));
+        data.add(new Note("id3", "title 3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 1"));
+        data.add(new Note("id4", "title 4", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 1"));
+        data.add(new Note("id5", "title 5", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 1"));
+        data.add(new Note("id6", "title 6", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 1"));
+        data.add(new Note("id7", "title 7", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 1"));
+        data.add(new Note("id8", "title 8", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 1"));
+        data.add(new Note("id9", "title 9", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 1"));
+        data.add(new Note("id10", "title 10", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 1"));
+
+
+
     }
 
     @Override
@@ -56,11 +67,19 @@ public class NotesListFragment extends Fragment implements NotesView {
 
         setToolbarOnFragment(view);
 
-        notesList = view.findViewById(R.id.recycler_view);
+        RecyclerView notesList = view.findViewById(R.id.recycler_view);
+        adapter = new NotesAdapter(data);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         notesList.setLayoutManager(lm);
         notesList.setAdapter(adapter);
         presenter.requestNotes();
+
+        adapter.setNoteClicked(new NotesAdapter.OnNoteClicked() {
+            @Override
+            public void onNoteClicked(Note note) {
+                openDetailsFragment(note);
+            }
+        });
     }
 
     private void openDetailsFragment(Note note) {
@@ -96,7 +115,7 @@ public class NotesListFragment extends Fragment implements NotesView {
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void displayNotes(List<Note> notes) {
-        adapter.setNotes(notes);
-        adapter.notifyDataSetChanged();
+//        adapter.setNotes(notes);
+//        adapter.notifyDataSetChanged();
     }
 }

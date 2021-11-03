@@ -4,6 +4,7 @@ import com.example.noteapp.domain.Callback;
 import com.example.noteapp.domain.Note;
 import com.example.noteapp.domain.NotesRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NotesPresenter {
@@ -19,18 +20,18 @@ public class NotesPresenter {
     public void requestNotes() {
 
 
-        repository.getNotes(new Callback<List<Note>>() {
-            @Override
-            public void onSuccess(List<Note> result) {
-                view.displayNotes(result);
-
-            }
-
-            @Override
-            public void onError(Throwable error) {
-
-            }
-        });
+//        repository.getNotes(new Callback<List<Note>>() {
+//            @Override
+//            public void onSuccess(List<Note> result) {
+//                view.displayNotes(result);
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable error) {
+//
+//            }
+//        });
 
     }
 }
